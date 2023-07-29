@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=Borel&family=Edu+SA+Beginner:wght@400;500;600;700&family=Lumanosimo&family=Pacifico&display=swap");
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(/images/food-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  background: rgb(146, 145, 145);
+  max-width: 90rem;
+  min-height: 70vh;
+  margin: 4vw auto;
+  border-radius: 15px;
+  box-shadow: 0 0 50px rgba(104, 67, 0, 0.452);
+  background-color: rgba(233, 233, 233, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.container .logo {
+  grid-area: logo;
+}
+.container .right {
+  grid-area: right;
+}
+.container header {
+  display: grid;
+  grid-template-areas: "logo right right";
+  padding: 40px;
+  border-radius: 15px;
+  background-color: rgba(190, 190, 190, 0.548);
+}
+.container header .notification {
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 15px;
+  background-color: #ffb600;
+  border-radius: 15px;
+  font-weight: 900;
+}
+.container header .notification img {
+  width: 100px;
+  height: 90px;
+}
+@media (max-width: 700px) {
+  .container header {
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 25px;
+    grid-template-areas: "logo logo" "right right";
+  }
+}
+@media (max-width: 1000px) {
+  .container header {
+    margin: 0 auto;
+    grid-template-areas: "logo logo" "right right";
+  }
+}
+.container header .logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: 150px;
+}
+.container header .logo:hover {
+  transform: translateY(-2px);
+  scale: 1.02;
+}
+@media (max-width: 700px) {
+  .container header .logo {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1000px) {
+  .container header .logo {
+    margin: 0 auto;
+  }
+}
+.container header .logo img {
+  height: 100px;
+}
+.container header .logo a {
+  font-family: "Pacifico", cursive;
+}
+.container header .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-right: 150px;
+}
+@media (max-width: 700px) {
+  .container header .right {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 550px) {
+  .container header .right {
+    gap: 10px;
+  }
+}
+@media (max-width: 380px) {
+  .container header .right {
+    gap: 5px;
+  }
+}
+@media (max-width: 1000px) {
+  .container header .right {
+    margin: 0 auto;
+  }
+}
+.container header .right .search_form form {
+  background: white;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  padding-left: 8px;
+}
+.container header .right .search_form form:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.356);
+}
+.container header .right .search_form form input {
+  border: none;
+  outline: none;
+  width: 300px;
+}
+.container header .right .search_form form input::-moz-placeholder {
+  color: rgba(148, 99, 0, 0.5490196078);
+}
+.container header .right .search_form form input::placeholder {
+  color: rgba(148, 99, 0, 0.5490196078);
+}
+@media (max-width: 550px) {
+  .container header .right .search_form form input {
+    width: 150px;
+  }
+}
+@media (max-width: 380px) {
+  .container header .right .search_form form input {
+    width: 75px;
+  }
+}
+.container header .right .search_form form button {
+  background-color: #ffb600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 40px;
+  padding: 10px 30px;
+  transition: all 0.3s;
+  font-family: "Edu SA Beginner", cursive;
+}
+.container header .right .search_form form button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.274);
+}
+@media (max-width: 380px) {
+  .container header .right .search_form form button {
+    padding: 5px 15px;
+  }
+}
+.container header .right .likes {
+  font-size: 25px;
+  cursor: pointer;
+  background: #ffb600;
+  padding: 7px;
+  border-radius: 8px;
+  transition: all 0.4s;
+}
+.container header .right .likes:hover {
+  transform: translateY(-2px);
+}
+.container main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 100%;
+}
+.container main .results {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+@media (max-width: 550px) {
+  .container main .results {
+    margin: 5px;
+    gap: 7.5px;
+  }
+}
+.container main .results .result-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 183, 0, 0.6901960784);
+  padding: 5px 10px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+@media (max-width: 550px) {
+  .container main .results .result-link {
+    width: 250px;
+    gap: unset;
+  }
+}
+.container main .results .result-link:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+  background: rgba(255, 183, 0, 0.9843137255);
+}
+.container main .results .result-link img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+@media (max-width: 550px) {
+  .container main .results .result-link img {
+    width: 30px;
+    height: 30px;
+  }
+}
+.container main .results .result-link .data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+@media (max-width: 550px) {
+  .container main .results .result-link .data {
+    font-size: 13px;
+  }
+}
+.container main .results .result-link .data h4 {
+  font-family: "Borel", cursive;
+  color: #8b5d00;
+  transition: 0.2s;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 255px;
+}
+.container main .results .result-link .data h4:hover {
+  color: rgb(85, 45, 0);
+}
+.container main .results .result-link .data p {
+  font-family: "Pacifico", cursive;
+  white-space: nowrap;
+}
+.container main .recipe {
+  background-color: rgba(190, 190, 190, 0.548);
+}
+.loader img {
+  margin: 80px auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Borel&family=Edu+SA+Beginner:wght@400;500;600;700&family=Lumanosimo&family=Pacifico&display=swap");
+@import "clear";
+
+@mixin ipad {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: 550px) {
+    @content;
+  }
+}
+@mixin mobile-middle {
+  @media (max-width: 380px) {
+    @content;
+  }
+}
+@mixin pc-middle {
+  @media (max-width: 1000px) {
+    @content;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url(/images/food-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  background: rgb(146, 145, 145);
+  max-width: 90rem;
+  min-height: 70vh;
+  margin: 4vw auto;
+  border-radius: 15px;
+  box-shadow: 0 0 50px rgba(104, 67, 0, 0.452);
+  background-color: rgba(233, 233, 233, 0.5);
+  display: flex;
+  flex-direction: column;
+  //! Header
+  .logo {
+    grid-area: logo;
+  }
+  .right {
+    grid-area: right;
+  }
+  header {
+    display: grid;
+    grid-template-areas: "logo right right";
+    padding: 40px;
+    border-radius: 15px;
+    background-color: rgba(190, 190, 190, 0.548);
+    .notification {
+      display: none;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 15px;
+      background-color: #ffb600;
+      border-radius: 15px;
+      font-weight: 900;
+      img {
+        width: 100px;
+        height: 90px;
+      }
+    }
+    @include ipad {
+      flex-direction: column;
+      margin: $margin-auto;
+      gap: 25px;
+      grid-template-areas:
+        "logo logo"
+        "right right";
+    }
+    @include pc-middle {
+      margin: $margin-auto;
+      grid-template-areas:
+        "logo logo"
+        "right right";
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 150px;
+      &:hover {
+        transform: $hover-effect;
+        scale: 1.02;
+      }
+      @include ipad {
+        margin: $margin-auto;
+      }
+      @include pc-middle {
+        margin: $margin-auto;
+      }
+
+      img {
+        height: 100px;
+      }
+      a {
+        font-family: "Pacifico", cursive;
+      }
+    }
+    .right {
+      display: flex;
+      justify-content: space-between;
+
+      align-items: center;
+      gap: 40px;
+      margin-right: 150px;
+      @include ipad {
+        margin: $margin-auto;
+      }
+      @include mobile {
+        gap: 10px;
+      }
+      @include mobile-middle {
+        gap: 5px;
+      }
+      @include pc-middle {
+        margin: $margin-auto;
+      }
+      .search_form {
+        form {
+          background: white;
+          border-radius: 40px;
+          display: flex;
+          align-items: center;
+          transition: 0.3s;
+          padding-left: 8px;
+          &:focus-within {
+            transform: $hover-effect;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.356);
+          }
+          input {
+            border: none;
+            outline: none;
+            width: 300px;
+            &::placeholder {
+              color: #9463008c;
+            }
+            @include mobile {
+              width: 150px;
+            }
+            @include mobile-middle {
+              width: 75px;
+            }
+          }
+          button {
+            background-color: #ffb600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 40px;
+            padding: 10px 30px;
+            transition: all 0.3s;
+            font-family: "Edu SA Beginner", cursive;
+
+            &:hover {
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.274);
+            }
+            @include mobile-middle {
+              padding: 5px 15px;
+            }
+          }
+        }
+      }
+      .likes {
+        font-size: 25px;
+        cursor: pointer;
+        background: #ffb600;
+        padding: 7px;
+        border-radius: 8px;
+        transition: all 0.4s;
+        &:hover {
+          transform: $hover-effect;
+        }
+        i {
+        }
+      }
+    }
+  }
+  //! Main
+  main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: 100%;
+    section {
+    }
+    .results {
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-height: 400px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      @include mobile() {
+        margin: 5px;
+        gap: 7.5px;
+      }
+      .result-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #ffb700b0;
+        padding: 5px 10px;
+        border-radius: 15px;
+        transition: all 0.3s;
+        @include mobile() {
+          width: 250px;
+          gap: unset;
+        }
+        &:hover {
+          transform: $hover-effect;
+          cursor: pointer;
+          background: #ffb700fb;
+        }
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          @include mobile() {
+            width: 30px;
+            height: 30px;
+          }
+        }
+        .data {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: $margin-auto;
+          @include mobile() {
+            font-size: 13px;
+          }
+          h4 {
+            font-family: "Borel", cursive;
+            color: #8b5d00;
+            transition: 0.2s;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 255px;
+            &:hover {
+              color: rgb(85, 45, 0);
+            }
+          }
+          p {
+            font-family: "Pacifico", cursive;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    .recipe {
+      background-color: rgba(190, 190, 190, 0.548);
+    }
+    .shopping {
+    }
+  }
+}
+
+//todo LOADER
+.loader {
+  img {
+    margin: 80px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+}

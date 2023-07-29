@@ -1,0 +1,13 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+//Değişkenler
+$hover-effect: translateY(-2px);
+$margin-auto: 0 auto;
