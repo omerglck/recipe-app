@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Borel&family=Edu+SA+Beginner:wght@400;500;600;700&family=Lumanosimo&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import "clear";
 
 @mixin ipad {
@@ -16,8 +17,18 @@
     @content;
   }
 }
+@mixin ninenty {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
 @mixin pc-middle {
   @media (max-width: 1000px) {
+    @content;
+  }
+}
+@mixin monit {
+  @media (min-width: 1000px) {
     @content;
   }
 }
@@ -43,6 +54,11 @@ body {
   background-color: rgba(233, 233, 233, 0.5);
   display: flex;
   flex-direction: column;
+  @include pc-middle {
+    margin: auto;
+    min-height: 100vh;
+    border-radius: unset;
+  }
   //! Header
   .logo {
     grid-area: logo;
@@ -56,6 +72,9 @@ body {
     padding: 40px;
     border-radius: 15px;
     background-color: rgba(190, 190, 190, 0.548);
+    @include pc-middle {
+      width: 100%;
+    }
     .notification {
       display: none;
       align-items: center;
@@ -64,9 +83,15 @@ body {
       background-color: #ffb600;
       border-radius: 15px;
       font-weight: 900;
+      padding: 5px;
       img {
         width: 100px;
         height: 90px;
+        @include ipad {
+          width: 60px;
+          height: 45px;
+          font-size: 15px;
+        }
       }
     }
     @include ipad {
@@ -82,6 +107,23 @@ body {
       grid-template-areas:
         "logo logo"
         "right right";
+    }
+    .weather {
+      background: #ffb600;
+      display: grid;
+      place-items: center;
+      width: 50%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 10px;
+      text-align: center;
+      white-space: nowrap;
+      max-height: 100px;
+      min-width: 175px;
+      p {
+        display: flex;
+        flex-direction: column;
+      }
     }
     .logo {
       display: flex;
@@ -174,16 +216,63 @@ body {
         }
       }
       .likes {
+        position: relative;
         font-size: 25px;
         cursor: pointer;
         background: #ffb600;
         padding: 7px;
         border-radius: 8px;
         transition: all 0.4s;
-        &:hover {
-          transform: $hover-effect;
+        opacity: 1;
+
+        &:hover > .list {
+          visibility: visible;
+          opacity: 1;
         }
-        i {
+        .list {
+          visibility: hidden;
+          transition: opacity 1s, visibility 1s;
+          opacity: 0;
+          position: absolute;
+          top: 50px;
+          right: -300px;
+          margin-right: 150px;
+          z-index: 100000;
+          background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
+          border-radius: 20px;
+          padding: 10px;
+          @include ninenty {
+            width: 150px;
+            right: -250px;
+          }
+          @include ipad {
+            right: -170px;
+          }
+          a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid black;
+            padding: 6px;
+
+            @include ninenty {
+            }
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              @include ninenty {
+                width: 35px;
+                height: 35px;
+              }
+            }
+            p {
+              font-size: 15px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
         }
       }
     }
@@ -193,17 +282,19 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     height: 100%;
-    section {
+    flex-grow: 1;
+    @include pc-middle {
+      grid-template-columns: 1fr;
     }
+
     .results {
       margin: 10px;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      max-height: 400px;
-      overflow-x: hidden;
-      overflow-y: scroll;
 
+      justify-content: start;
+      align-items: center;
       @include mobile() {
         margin: 5px;
         gap: 7.5px;
@@ -216,8 +307,13 @@ body {
         padding: 5px 10px;
         border-radius: 15px;
         transition: all 0.3s;
+        margin-right: 5px;
+        width: 80%;
+        @include monit {
+          width: 100%;
+        }
         @include mobile() {
-          width: 250px;
+          width: 350px;
           gap: unset;
         }
         &:hover {
@@ -249,7 +345,7 @@ body {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            max-width: 255px;
+            max-width: 200px;
             &:hover {
               color: rgb(85, 45, 0);
             }
@@ -263,8 +359,198 @@ body {
     }
     .recipe {
       background-color: rgba(190, 190, 190, 0.548);
+
+      figure {
+        height: 300px;
+        position: relative;
+        &::before {
+          content: "";
+          display: block;
+          background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
+          opacity: 0.4;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        h1 {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 20%) skewY(-6deg);
+          color: black;
+          font-weight: 600;
+          padding: 8px 30px;
+          background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
+          white-space: nowrap;
+          text-shadow: 0 0 10px rgb(202, 202, 202);
+          font-family: "Pacifico", cursive;
+          border-radius: 3px;
+          letter-spacing: 3px;
+
+          max-width: 400px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .like-area {
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          padding: 20px;
+          i {
+            font-size: 25px;
+            padding: 5px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            &:hover {
+              cursor: pointer;
+              background: #a73d00;
+              color: #fff;
+            }
+          }
+        }
+      }
+      .ingredients {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+
+        column-gap: 90px;
+        width: 100%;
+        justify-content: center;
+        margin-top: 35px;
+        ul {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+          @include mobile() {
+            grid-template-columns: 1fr;
+          }
+          li {
+            display: flex;
+            gap: 10px;
+            list-style-type: none;
+            i {
+              color: #a73d00;
+            }
+            p {
+              white-space: nowrap;
+              max-width: 290px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 25px;
+          padding: 15px;
+          margin: 50px auto;
+          width: 100%;
+          font-size: 20px;
+          background-color: #f77221;
+          color: black;
+          cursor: pointer;
+          transition: all 0.3s;
+          gap: 10px;
+
+          &:hover {
+            scale: 0.97;
+          }
+          i {
+          }
+          span {
+            font-family: "Edu SA Beginner", cursive;
+            font-weight: 900;
+            letter-spacing: 2px;
+          }
+          span,
+          i {
+            pointer-events: none;
+          }
+        }
+      }
+      .directions {
+        text-align: center;
+        padding-bottom: 40px;
+        h2 {
+          transform: skewY(-3deg);
+          font-weight: 600;
+          color: #b64301;
+          font-family: "Pacifico", cursive;
+          letter-spacing: 3px;
+          font-size: 27px;
+          text-shadow: 0 0 10px #f76b1c;
+        }
+        p {
+          padding: 50px;
+          font-weight: 400;
+          span {
+            color: #9c3a01;
+          }
+        }
+        a {
+          padding: 10px 30px;
+          border: 1px solid #f77221;
+          border-radius: 30px;
+          font-weight: 600;
+          transition: all 0.3s;
+          &:hover {
+            background-color: #f77221;
+            color: black;
+          }
+        }
+      }
     }
     .shopping {
+      h2 {
+        text-align: center;
+        font-family: "Edu SA Beginner", cursive;
+        padding: 5px 2px;
+        margin: 30px;
+      }
+      .button-area {
+        display: flex;
+        justify-content: end;
+        margin: 5px;
+        padding: 5px;
+        button {
+          display: none;
+          gap: 5px;
+          background: rgb(252, 36, 36);
+          color: white;
+          transition: background 0.3s, scale 0.3s;
+          cursor: pointer;
+          &:hover {
+            scale: 0.95;
+            background: rgb(165, 0, 0);
+          }
+        }
+      }
+      ul {
+        overflow-x: auto;
+        li {
+          list-style: none;
+          padding: 5px;
+          border-bottom: 1px solid #773912;
+          font-family: "Edu SA Beginner", cursive;
+          font-weight: 600;
+          i {
+            cursor: pointer;
+            font-size: 20px;
+          }
+        }
+      }
     }
   }
 }
@@ -277,4 +563,9 @@ body {
     height: 100px;
     border-radius: 50%;
   }
+}
+
+// like butonu
+#like-btn {
+  color: #fc5f05;
 }

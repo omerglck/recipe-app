@@ -10,11 +10,19 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
+    <link rel="shortcut icon" href="images/food-logo.png" type="image/x-icon" />
   </head>
   <body>
     <div class="container">
       <!-- Nav Area -->
+
       <header>
+        <div class="weather">
+          <p>
+            Hava Durumu:
+            <span class="temperature" id="weather-info">25 derece</span>
+          </p>
+        </div>
         <div class="logo">
           <img src="images/food-logo.png" alt="" />
           <a href="/">CHEF</a>
@@ -23,6 +31,7 @@
           <span>Aramak istediğiniz yemeği giriniz!</span>
           <img src="images/pizza-gif.gif" alt="" />
         </div>
+
         <div class="right">
           <div class="search_form">
             <form>
@@ -38,14 +47,25 @@
           </div>
           <div class="likes">
             <i class="bi bi-bookmark-heart"></i>
+            <div class="list"></div>
           </div>
         </div>
       </header>
       <!-- Main Area -->
       <main>
         <section class="results"></section>
-        <section class="recipe">a</section>
-        <section class="shopping">a</section>
+        <section class="recipe"></section>
+        <section class="shopping">
+          <h2>Sepet</h2>
+          <div class="button-area">
+            <button id="clear">
+              <i class="bi bi-trash"></i> <span>Sepeti Temizle</span>
+            </button>
+          </div>
+          <ul>
+            <li>Alınacak Yok</li>
+          </ul>
+        </section>
       </main>
     </div>
 
