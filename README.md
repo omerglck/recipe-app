@@ -26,6 +26,10 @@
 
 - OpenWeather API
 
+## Demo
+
+<a href="https://recipe-app-weather.netlify.app/">Önizleme</a>
+
 ## Gif
 
 <img src="screen.gif"/>
